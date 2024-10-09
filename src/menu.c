@@ -75,6 +75,8 @@ static void inicioJuegoVentana(GtkWidget *widget, gpointer data) {
     gtk_window_set_default_size(GTK_WINDOW(new_window), 1600, 900);
     //Posición de la ventana
     gtk_window_set_position(GTK_WINDOW(new_window), GTK_WIN_POS_CENTER);
+    //No se puede cambiar el tamaño de la ventana
+    gtk_window_set_resizable(GTK_WINDOW(new_window), FALSE);
     //Borde
     gtk_container_set_border_width(GTK_CONTAINER(new_window), 10);
 
@@ -100,6 +102,26 @@ static void inicioJuegoVentana(GtkWidget *widget, gpointer data) {
     gtk_widget_show_all(new_window);
 }
 
+//Carga estilo en css
+static void cargarEstilo(GtkWidget *widget) {
+     GtkCssProvider *cssProvider = gtk_css_provider_new();
+    GError *error = NULL;
+
+    // Cargar el CSS desde un archivo
+    if (gtk_css_provider_load_from_path(cssProvider, "style.css", &error) == FALSE) {
+        g_printerr("Error cargando CSS: %s\n", error->message);
+        g_error_free(error);
+    }
+
+    // Aplicar el CSS a la ventana actual
+    gtk_style_context_add_provider_for_screen(gdk_screen_get_default(),
+                                               GTK_STYLE_PROVIDER(cssProvider),
+                                               GTK_STYLE_PROVIDER_PRIORITY_USER);
+    
+    g_object_unref(cssProvider);
+}
+
+
 static void activate(GtkApplication *app, gpointer user_data) {
     GtkWidget *window;
     GtkWidget *grid;
@@ -113,10 +135,14 @@ static void activate(GtkApplication *app, gpointer user_data) {
     gtk_window_set_default_size(GTK_WINDOW(window), 1600, 900);
     //Posición de la ventana
     gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER_ALWAYS);
-    //Borde
+    //No se puede cambiar el tamaño de
     gtk_window_set_resizable(GTK_WINDOW(window), FALSE);
+    //Borde
     gtk_container_set_border_width(GTK_CONTAINER(window), 10);
 
+	//Cargar estilo CSS
+    cargarEstilo(window);
+    
     grid = gtk_grid_new();
     gtk_container_add(GTK_CONTAINER(window), grid);
 
