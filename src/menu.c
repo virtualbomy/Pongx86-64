@@ -67,7 +67,7 @@ static void inicioJuegoVentana(GtkWidget *widget, gpointer data) {
     GtkWidget *new_window;
     GtkWidget *main_window = GTK_WIDGET(data);
 
-    // Crear nueva ventana
+    //Crear nueva ventana
     new_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     //Título de la ventana
     gtk_window_set_title(GTK_WINDOW(new_window), "PONG");
@@ -107,13 +107,13 @@ static void cargarEstilo(GtkWidget *widget) {
      GtkCssProvider *cssProvider = gtk_css_provider_new();
     GError *error = NULL;
 
-    // Cargar el CSS desde un archivo
+    //Cargar el CSS desde un archivo
     if (gtk_css_provider_load_from_path(cssProvider, "style.css", &error) == FALSE) {
         g_printerr("Error cargando CSS: %s\n", error->message);
         g_error_free(error);
     }
 
-    // Aplicar el CSS a la ventana actual
+    //Aplicar el CSS a la ventana actual
     gtk_style_context_add_provider_for_screen(gdk_screen_get_default(),
                                                GTK_STYLE_PROVIDER(cssProvider),
                                                GTK_STYLE_PROVIDER_PRIORITY_USER);
