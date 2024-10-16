@@ -55,7 +55,7 @@ static void instruccionesJuegoVentana(GtkWidget *widget, gpointer data) {
     //Texto a la izquierda
     gtk_label_set_justify(GTK_LABEL(label_instructions), GTK_JUSTIFY_LEFT);
     //Posicion del lable
-    gtk_grid_attach(GTK_GRID(grid), label_instructions, 0, 0, 1, 1);
+    gtk_grid_attach(GTK_GRID(grid), label_instructions, 0, 3, 10, 10);
 
 
     //Mostrar la nueva ventana
@@ -67,7 +67,7 @@ static void inicioJuegoVentana(GtkWidget *widget, gpointer data) {
     GtkWidget *new_window;
     GtkWidget *main_window = GTK_WIDGET(data);
 
-    //Crear nueva ventana
+    // Crear nueva ventana
     new_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     //Título de la ventana
     gtk_window_set_title(GTK_WINDOW(new_window), "PONG");
@@ -107,13 +107,13 @@ static void cargarEstilo(GtkWidget *widget) {
      GtkCssProvider *cssProvider = gtk_css_provider_new();
     GError *error = NULL;
 
-    //Cargar el CSS desde un archivo
+    // Cargar el CSS desde un archivo
     if (gtk_css_provider_load_from_path(cssProvider, "style.css", &error) == FALSE) {
         g_printerr("Error cargando CSS: %s\n", error->message);
         g_error_free(error);
     }
 
-    //Aplicar el CSS a la ventana actual
+    // Aplicar el CSS a la ventana actual
     gtk_style_context_add_provider_for_screen(gdk_screen_get_default(),
                                                GTK_STYLE_PROVIDER(cssProvider),
                                                GTK_STYLE_PROVIDER_PRIORITY_USER);
@@ -126,6 +126,8 @@ static void activate(GtkApplication *app, gpointer user_data) {
     GtkWidget *window;
     GtkWidget *grid;
     GtkWidget *button;
+    GtkWidget *image;
+
 
     //Ventana principal
     window = gtk_application_window_new(app);
@@ -172,6 +174,11 @@ static void activate(GtkApplication *app, gpointer user_data) {
     //Cuando se da click, el botón destruye la ventana y sale completamente del programa
     g_signal_connect_swapped(button, "clicked", G_CALLBACK(gtk_widget_destroy), window);
     gtk_grid_attach(GTK_GRID(grid), button, 1, 12, 1, 1);
+
+    // Crear y añadir la imagen
+    image = gtk_image_new_from_file("img/title1.png"); // Cambia esto a la ruta de tu imagen
+    gtk_grid_attach(GTK_GRID(grid), image, 2, 0, 1, 13); 
+
 
     gtk_widget_show_all(window);
 }
