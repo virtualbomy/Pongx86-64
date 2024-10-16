@@ -1,7 +1,15 @@
 # README
 Proyecto Integrador de Arquitectura y Ensamblador - Desarrollo de juegos retro en modo texto (Pong)
 
-## Sobre el proyecto
+## Informe Técnico Ejecutivo
+### Introducción
+### Resultados y análisis
+### Conclusiones
+En el desarrollo del proyecto el mayor reto al implementar GTK para la interfaz fue configurar correctamente la posición de objetos en el grid.
+### Bibliografía
+“Gtk-3.0”. GTK Documentation. Accedido el 16 de octubre de 2024. [En línea]. Disponible: https://docs.gtk.org/gtk3/ <br /> 
+“NASM - The Netwide Assembler”. NASM. Accedido el 16 de octubre de 2024. [En línea]. Disponible: https://www.nasm.us/xdoc/2.16.03/html/nasmdoc0.html <br /> 
+
 
 ## Integrantes
 - Macey Bourrouett Obando - C11183 <br /> 
@@ -27,6 +35,3 @@ make clean
 ```
 
 ## Uso
-
-
-
